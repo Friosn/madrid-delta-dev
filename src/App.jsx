@@ -1,9 +1,12 @@
 import './App.css';
 
-import React from 'react';
+import { AppRouter } from './router/AppRouter';
+import { AppTheme } from './theme';
 
-function App() {
-  return <div className="App"></div>;
-}
-
-export default App;
+export const App = () => {
+  return (
+    <AppTheme>
+      <AppRouter />
+    </AppTheme>
+  );
+};
