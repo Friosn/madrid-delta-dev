@@ -14,7 +14,7 @@ const formData = {
   password: '',
 };
 
-export const LoginPage = () => {
+export const NewPassword = () => {
   const { status, errorMessage } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -26,16 +26,11 @@ export const LoginPage = () => {
     event.preventDefault();
 
     // console.log({ email, password })
-    dispatch(startLoginWithEmailPassword({ email, password }));
-  };
-
-  const onGoogleSignIn = () => {
-    console.log('onGoogleSignIn');
-    dispatch(startGoogleSignIn());
+    // dispatch(startLoginWithEmailPassword({ email, password }));
   };
 
   return (
-    <AuthLayout title="Login">
+    <AuthLayout title="Introduzca su correo para cambiar la contraseña">
       <form
         onSubmit={onSubmit}
         className="animate__animated animate__fadeIn animate__faster"
@@ -53,29 +48,6 @@ export const LoginPage = () => {
             />
           </Grid>
 
-          <Grid item xs={12} sx={{ mt: 2 }}>
-            <TextField
-              label="Contraseña"
-              type="password"
-              placeholder="Contraseña"
-              fullWidth
-              name="password"
-              value={password}
-              onChange={onInputChange}
-            />
-            <Grid container direction="row" justifyContent="star">
-              <Link
-                fontSize={10}
-                marginTop={1}
-                component={RouterLink}
-                color="inherit"
-                to="/auth/newPassword"
-              >
-                ¿Ha olvidado su contraseña?
-              </Link>
-            </Grid>
-          </Grid>
-
           <Grid container display={!!errorMessage ? '' : 'none'} sx={{ mt: 1 }}>
             <Grid item xs={12}>
               <Alert severity="error">{errorMessage}</Alert>
@@ -90,30 +62,18 @@ export const LoginPage = () => {
                 variant="contained"
                 fullWidth
               >
-                LOGIN
+                ENVIAR
               </Button>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Button
-                disabled={isAuthenticating}
-                variant="contained"
-                fullWidth
-                onClick={onGoogleSignIn}
-              >
-                <Google />
-                <Typography sx={{ ml: 1 }}>Google</Typography>
-              </Button>
+              <Typography align="center" marginTop={1} fontSize={10} sx={{ mr: 1 }}>
+                Una vez validado el correo recibirá un correo de contestación con las
+                instrucciones para cambiar su contraseña
+              </Typography>
             </Grid>
           </Grid>
+
           <Grid container direction="row" justifyContent="center">
-            <Link
-              align="center"
-              fontSize={12}
-              component={RouterLink}
-              color="inherit"
-              to="/auth/register"
-            >
-              Crear una cuenta
+            <Link fontSize={12} component={RouterLink} color="inherit" to="/auth/login">
+              Volver al login
             </Link>
           </Grid>
         </Grid>
