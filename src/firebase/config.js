@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore/lite';
-
+import { sendPasswordResetEmail } from 'firebase/auth';
 const firebaseConfig = {
   apiKey: 'AIzaSyA37M415sYtBfEOuirZssi7wpOees6MbOM',
   authDomain: 'pruebas-d2e03.firebaseapp.com',
