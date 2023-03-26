@@ -1,30 +1,36 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
-import { Google } from '@mui/icons-material';
-
 import { AuthLayout } from '../layout/AuthLayout';
-
+import 'firebase/auth';
 import { useForm } from '../../hooks';
-import { startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth';
-
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { FirebaseAuth } from '../../firebase/config';
 const formData = {
   email: '',
-  password: '',
 };
 
 export const NewPassword = () => {
-  const { status, errorMessage } = useSelector((state) => state.auth);
+  const { email, onInputChange } = useForm(formData);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const dispatch = useDispatch();
-  const { email, password, onInputChange } = useForm(formData);
-
-  const isAuthenticating = useMemo(() => status === 'checking', [status]);
+  //   const isAuthenticating = useMemo(() => status === 'checking', [status]);
 
   const onSubmit = (event) => {
     event.preventDefault();
-
+    sendPasswordResetEmail(FirebaseAuth, email)
+      .then(() => {
+        setSuccessMessage(
+          'Se ha enviado un correo electrónico para restablecer tu contraseña. Por favor, revisa tu bandeja de entrada.',
+        );
+        setErrorMessage('');
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+        setSuccessMessage('');
+      });
     // console.log({ email, password })
     // dispatch(startLoginWithEmailPassword({ email, password }));
   };
@@ -45,6 +51,7 @@ export const NewPassword = () => {
               name="email"
               value={email}
               onChange={onInputChange}
+              required
             />
           </Grid>
 
@@ -53,21 +60,22 @@ export const NewPassword = () => {
               <Alert severity="error">{errorMessage}</Alert>
             </Grid>
           </Grid>
+          <Grid container display={!!successMessage ? '' : 'none'} sx={{ mt: 1 }}>
+            <Grid item xs={12}>
+              <Alert severity="success">{successMessage}</Alert>
+            </Grid>
+          </Grid>
 
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid item xs={12} sm={6}>
               <Button
-                disabled={isAuthenticating}
+                // disabled={isAuthenticating}
                 type="submit"
                 variant="contained"
                 fullWidth
               >
                 ENVIAR
               </Button>
-              <Typography align="center" marginTop={1} fontSize={10} sx={{ mr: 1 }}>
-                Una vez validado el correo recibirá un correo de contestación con las
-                instrucciones para cambiar su contraseña
-              </Typography>
             </Grid>
           </Grid>
 
