@@ -1,10 +1,11 @@
 import {
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  signInWithEmailAndPassword,
   signInWithPopup,
   updateProfile,
 } from 'firebase/auth';
+
 import { FirebaseAuth } from './config';
 
 const googleProvider = new GoogleAuthProvider();

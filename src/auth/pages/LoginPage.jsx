@@ -1,13 +1,12 @@
+import { Google } from '@mui/icons-material';
+import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
-import { Google } from '@mui/icons-material';
-
-import { AuthLayout } from '../layout/AuthLayout';
 
 import { useForm } from '../../hooks';
 import { startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth';
+import { AuthLayout } from '../layout/AuthLayout';
 
 const formData = {
   email: '',
@@ -76,7 +75,7 @@ export const LoginPage = () => {
             </Grid>
           </Grid>
 
-          <Grid container display={!!errorMessage ? '' : 'none'} sx={{ mt: 1 }}>
+          <Grid container display={errorMessage ? '' : 'none'} sx={{ mt: 1 }}>
             <Grid item xs={12}>
               <Alert severity="error">{errorMessage}</Alert>
             </Grid>

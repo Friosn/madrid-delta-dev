@@ -1,12 +1,14 @@
+import 'firebase/auth';
+
+import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
-import { AuthLayout } from '../layout/AuthLayout';
-import 'firebase/auth';
-import { useForm } from '../../hooks';
-import { sendPasswordResetEmail } from 'firebase/auth';
+
 import { FirebaseAuth } from '../../firebase/config';
+import { useForm } from '../../hooks';
+import { AuthLayout } from '../layout/AuthLayout';
 const formData = {
   email: '',
 };
@@ -55,12 +57,12 @@ export const NewPassword = () => {
             />
           </Grid>
 
-          <Grid container display={!!errorMessage ? '' : 'none'} sx={{ mt: 1 }}>
+          <Grid container display={errorMessage ? '' : 'none'} sx={{ mt: 1 }}>
             <Grid item xs={12}>
               <Alert severity="error">{errorMessage}</Alert>
             </Grid>
           </Grid>
-          <Grid container display={!!successMessage ? '' : 'none'} sx={{ mt: 1 }}>
+          <Grid container display={successMessage ? '' : 'none'} sx={{ mt: 1 }}>
             <Grid item xs={12}>
               <Alert severity="success">{successMessage}</Alert>
             </Grid>
