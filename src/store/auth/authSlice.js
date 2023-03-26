@@ -25,10 +25,11 @@ export const authSlice = createSlice({
       state.email = null;
       state.displayName = null;
       state.photoURL = null;
-      state.errorMessage = payload?.errorMessage;
+      payload ? (state.errorMessage = payload.errorMessage) : (state.errorMessage = null);
     },
     checkingCredentials: (state) => {
       state.status = 'checking';
+      state.errorMessage = null;
     },
   },
 });

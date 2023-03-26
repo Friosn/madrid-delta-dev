@@ -1,11 +1,11 @@
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
 import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-
-import { useForm } from '../../hooks';
-import { startCreatingUserWithEmailPassword } from '../../store/auth';
+import { Alert, Button, Grid, Link, TextField, Typography, Box } from '@mui/material';
 import { AuthLayout } from '../layout/AuthLayout';
+import { useForm } from '../../hooks';
+
+import { startCreatingUserWithEmailPassword } from '../../store/auth';
 
 const formData = {
   email: '',
@@ -49,6 +49,14 @@ export const RegisterPage = () => {
 
   return (
     <AuthLayout title="Crear cuenta">
+      <Box maxWidth="100%" display="flex" alignItems="center" justifyContent="center">
+        <img
+          src="https://res.cloudinary.com/djaslmpgv/image/upload/v1674056580/Logos/LOGO_MADRID_DELTA_negro_nuevo_pht3cg.png"
+          alt="logo madrid-delta"
+          className="loginLogo"
+          width="200px"
+        />
+      </Box>
       <form
         onSubmit={onSubmit}
         className="animate__animated animate__fadeIn animate__faster"
@@ -97,7 +105,7 @@ export const RegisterPage = () => {
           </Grid>
 
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-            <Grid item xs={12} display={errorMessage ? '' : 'none'}>
+            <Grid item xs={12} display={!!errorMessage ? '' : 'none'}>
               <Alert severity="error">{errorMessage}</Alert>
             </Grid>
 

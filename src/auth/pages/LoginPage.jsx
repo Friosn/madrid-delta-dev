@@ -1,5 +1,5 @@
 import { Google } from '@mui/icons-material';
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
+import { Alert, Button, Grid, Link, TextField, Typography, Box } from '@mui/material';
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
@@ -34,7 +34,15 @@ export const LoginPage = () => {
   };
 
   return (
-    <AuthLayout title="Login">
+    <AuthLayout title="LOGIN">
+      <Box maxWidth="100%" display="flex" alignItems="center" justifyContent="center">
+        <img
+          src="https://res.cloudinary.com/djaslmpgv/image/upload/v1674056580/Logos/LOGO_MADRID_DELTA_negro_nuevo_pht3cg.png"
+          alt="logo madrid-delta"
+          className="loginLogo"
+          width="200px"
+        />
+      </Box>
       <form
         onSubmit={onSubmit}
         className="animate__animated animate__fadeIn animate__faster"
