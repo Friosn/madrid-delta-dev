@@ -9,7 +9,7 @@ import {
 import { FirebaseAuth } from './config';
 
 const googleProvider = new GoogleAuthProvider();
-
+//google provi
 export const singInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(FirebaseAuth, googleProvider);

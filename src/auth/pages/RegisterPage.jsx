@@ -122,8 +122,10 @@ export const RegisterPage = () => {
           </Grid>
 
           <Grid container direction="row" justifyContent="end">
-            <Typography sx={{ mr: 1 }}>¿Ya tienes cuenta?</Typography>
-            <Link component={RouterLink} color="inherit" to="/auth/login">
+            <Typography fontSize={12} sx={{ mr: 1 }}>
+              ¿Ya tienes cuenta?
+            </Typography>
+            <Link fontSize={12} component={RouterLink} color="inherit" to="/auth/login">
               ingresar
             </Link>
           </Grid>
